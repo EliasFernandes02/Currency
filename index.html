@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- FontAweome CDN Link for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="css/style.css">
+  <title>Currency</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header>Currency Conversor</header>
+    <form action="#">
+      <div class="amount">
+        <p>Digite valor</p>
+        <input type="text" value="1">
+      </div>
+      <div class="drop-list">
+        <div class="from">
+          <p>From</p>
+          <div class="select-box">
+            <img src="https://flagcdn.com/48x36/us.png" alt="flag">
+            <select> <!-- Option tag inseridas com javascript --> </select>
+          </div>
+        </div>
+        <div class="icon"><i class="fas fa-exchange-alt"></i></div>
+        <div class="to">
+          <p>To</p>
+          <div class="select-box">
+            <img src="https://flagcdn.com/48x36/np.png" alt="flag">
+            <select> <!-- Option tag inseridas com javascript --> </select>
+          </div>
+        </div>
+      </div>
+      <div class="exchange-rate">Convertendo</div>
+      <button>Get Exchange Rate</button>
+    </form>
+  </div>
+  <script src="js/country-list.js"></script>
+  <script src="js/script.js"></script>
+  
+</body>
+</html>
