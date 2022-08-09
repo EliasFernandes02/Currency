@@ -14,8 +14,24 @@ for (let i = 0; i < dropList.length; i++) {
     dropList[i].addEventListener("change", e =>{
         loadFlag(e.target);
     });
+    dropList[i].addEventListener("change",e => {
+        loadFlag(e.target); //carregando loadFlag com o parsing element
+    });
 }
-window.addEventListener("load",e=>{
+
+function loadFlag(element) {
+    for(code in country_code){
+        if(code == element.value){//se ocounty code  é igual ao selecionado
+            let imgTag = element.parentElement.querySelector("img");//selecionando img
+            //passando a img para a currency escolhida
+            imgTag.src=`https://flagcdn.com/48x36/${country_code[code]}.png`
+
+        }
+    }
+}
+
+
+window.addEventListener("load", () =>{
     getExchangeRate();
 });
 
@@ -24,24 +40,34 @@ getButton.addEventListener("click",e=>{
     getExchangeRate();
 });
 
+const exchangeIcon = document.querySelector(".drop-list .icon");
+exchangeIcon.addEventListener("click", () => {
+    let tempCode = fromCurrency.value;
+    fromCurrency.value = toCurrency.value;
+    toCurrency.value = tempCode;
+    loadFlag(fromCurrency);//carregando as flags
+    loadFlag(toCurrency);//carregando as flags
+    getExchangeRate();
+})
+
+
 function getExchangeRate(){
-    const amount = document.querySelector(".amount-input");
-     exchangeRateTxt = document.querySelector(".exchange-rate");
+    const amount = document.querySelector("form input");
+    const exchangeRateTxt = document.querySelector("form .exchange-rate");
     let amountVal = amount.value;
-    //não deixar o usuario setar o valor 0 
+     //não deixar o usuario setar o valor 0 
     if(amountVal == "" || amountVal == "0"){
         amount.value = "1";
-        amount.value = 1;
+        amountVal = 1;
     }
-    exchangeRateTxt.innerText= "Convertendo";
+    exchangeRateTxt.innerText = "Getting exchange rate...";
     let url = `https://v6.exchangerate-api.com/v6/YOUR-API-KEY/latest/${fromCurrency.value}`;
     //fetching a api response e retornando em json response
-    fetch(url).then(response =>response.json()).then(result =>{
+    fetch(url).then(response => response.json()).then(result =>{
         let exchangeRate = result.conversion_rates[toCurrency.value];
-        let totalExchangeRate = (amountVal * exchangeRate).toFixed(2);
-
-        
-        exchangeRateTxt.innerText = `${amountVal} ${fromCurrency.value}=${totalExchangeRate}  ${toCurrency.value}`;
-
-    })
+        let totalExRate = (amountVal * exchangeRate).toFixed(2);
+        exchangeRateTxt.innerText = `${amountVal} ${fromCurrency.value} = ${totalExRate} ${toCurrency.value}`;
+    }).catch(() =>{
+        exchangeRateTxt.innerText = "Errou";
+    });
 }

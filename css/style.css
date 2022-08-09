@@ -12,11 +12,11 @@ body{
   justify-content: center;
   min-height: 100vh;
   padding: 0 10px;
-  background: #675AFE;
+  background: rgb(135, 173, 97);
 }
 ::selection{
   color: #fff;
-  background: #675AFE;
+  background: rgb(135, 173, 97);;
 }
 .wrapper{
   width: 370px;
@@ -51,7 +51,7 @@ form input{
 }
 form input:focus{
   padding: 0 14px;
-  border: 2px solid #675AFE;
+  border: 2px solid rgb(135, 173, 97);;
 }
 form .drop-list{
   display: flex;
@@ -102,9 +102,9 @@ form button{
   color: #fff;
   font-size: 17px;
   cursor: pointer;
-  background: #675AFE;
+  background: rgb(135, 173, 97);;
   transition: 0.3s ease;
 }
 form button:hover{
-  background: #4534fe;
+  background: rgb(135, 173, 97);;
 }
